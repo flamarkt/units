@@ -1,0 +1,18 @@
+flamarkt-units:
+    backoffice:
+        products:
+            field:
+                unit: Unit
+                amountMin: Amount Min
+                amountMax: Amount Max
+                amountStep: Amount Step
+        units:
+            field:
+                slug: Slug
+                preset: Preset
+                labelSingular: Label Singular
+                labelPlural: Label Plural
+                decimals: Decimals
+                defaultMin: Default Min
+                defaultMax: Default Max
+                defaultStep: Default Step
