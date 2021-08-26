@@ -1,7 +1,7 @@
+import {extend} from 'flarum/common/extend';
 import ActiveLinkButton from 'flamarkt/core/common/components/ActiveLinkButton';
 import BackofficeNav from 'flamarkt/core/backoffice/components/BackofficeNav';
 import ProductShowPage from 'flamarkt/core/backoffice/pages/ProductShowPage';
-import {extend} from 'flarum/common/extend';
 import ItemList from 'flarum/common/utils/ItemList';
 import Select from 'flarum/common/components/Select';
 import Unit from '../common/models/Unit';
@@ -35,10 +35,6 @@ app.initializers.add('flamarkt-units', () => {
                 'units.*',
             ],
         }, 'Units'));
-    });
-
-    extend(ProductShowPage.prototype, 'oninit', function (this: ProductShowPage) {
-        this.unit = true;
     });
 
     extend(ProductShowPage.prototype, 'show', function (this: ProductShowPage) {
