@@ -5,13 +5,13 @@ import UnitListState from '../states/UnitListState';
 import UnitList from '../components/UnitList';
 
 export default class UnitIndexPage extends Page {
-    state!: UnitListState;
+    listState!: UnitListState;
 
     oninit(vnode: Vnode) {
         super.oninit(vnode);
 
-        this.state = new UnitListState();
-        this.state.refresh();
+        this.listState = new UnitListState();
+        this.listState.refresh();
     }
 
     view() {
@@ -25,7 +25,7 @@ export default class UnitIndexPage extends Page {
                 }, 'New unit'),
             ]),
             m(UnitList, {
-                state: this.state,
+                state: this.listState,
             }),
         ]));
     }

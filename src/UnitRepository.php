@@ -58,6 +58,30 @@ class UnitRepository
             $unit->preset = Arr::get($attributes, 'preset');
         }
 
+        if (Arr::exists($attributes, 'labelSingular')) {
+            $unit->label_singular = Arr::get($attributes, 'labelSingular');
+        }
+
+        if (Arr::exists($attributes, 'labelPlural')) {
+            $unit->label_plural = Arr::get($attributes, 'labelPlural');
+        }
+
+        if (Arr::exists($attributes, 'decimals')) {
+            $unit->decimals = Arr::get($attributes, 'decimals');
+        }
+
+        if (Arr::exists($attributes, 'defaultMin')) {
+            $unit->default_min = Arr::get($attributes, 'defaultMin');
+        }
+
+        if (Arr::exists($attributes, 'defaultMax')) {
+            $unit->default_max = Arr::get($attributes, 'defaultMax');
+        }
+
+        if (Arr::exists($attributes, 'defaultStep')) {
+            $unit->default_step = Arr::get($attributes, 'defaultStep');
+        }
+
         $this->events->dispatch(new Saving($unit, $actor, $data));
 
         $unit->save();
@@ -77,6 +101,8 @@ class UnitRepository
     public function update(Unit $unit, User $actor, array $data): Unit
     {
         $actor->assertCan('edit', $unit);
+
+        $this->validator->setUnit($unit);
 
         return $this->save($unit, $actor, $data);
     }

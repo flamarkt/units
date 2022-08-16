@@ -1,9 +1,9 @@
-import AbstractList from 'flamarkt/core/backoffice/components/AbstractList';
+import AbstractList from 'flamarkt/backoffice/backoffice/components/AbstractList';
 import LinkButton from 'flarum/common/components/LinkButton';
 import Button from 'flarum/common/components/Button';
 import Unit from '../../common/models/Unit';
 
-export default class UnitList extends AbstractList {
+export default class UnitList extends AbstractList<Unit> {
     head() {
         const columns = super.head();
 

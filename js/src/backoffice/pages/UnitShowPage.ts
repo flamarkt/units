@@ -1,5 +1,6 @@
-import AbstractShowPage from 'flamarkt/core/common/pages/AbstractShowPage';
-import SubmitButton from 'flamarkt/core/backoffice/components/SubmitButton';
+import {Children} from 'mithril';
+import AbstractShowPage from 'flamarkt/backoffice/common/pages/AbstractShowPage';
+import SubmitButton from 'flamarkt/backoffice/backoffice/components/SubmitButton';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import Select from 'flarum/common/components/Select';
 import ItemList from 'flarum/common/utils/ItemList';
@@ -51,8 +52,8 @@ export default class UnitShowPage extends AbstractShowPage {
         }, m('.container', this.fields().toArray()));
     }
 
-    fields(): ItemList {
-        const fields = new ItemList();
+    fields(): ItemList<Children> {
+        const fields = new ItemList<Children>();
 
         fields.add('slug', m('.Form-group', [
             m('label', app.translator.trans('flamarkt-units.backoffice.units.field.slug')),
@@ -72,6 +73,7 @@ export default class UnitShowPage extends AbstractShowPage {
                 value: this.preset || 'default',
                 onchange: (value: string) => {
                     this.preset = value === 'default' ? null : value;
+                    this.dirty = true;
                 },
                 options: this.presetOptions(),
             }),
@@ -195,6 +197,10 @@ export default class UnitShowPage extends AbstractShowPage {
             this.saving = false;
             this.dirty = false;
             m.redraw();
+
+            m.route.set(app.route('units.show', {
+                id: unit.id(),
+            }));
         }).catch(error => {
             this.saving = false;
             m.redraw();

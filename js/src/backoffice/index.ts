@@ -1,8 +1,7 @@
 import {extend} from 'flarum/common/extend';
-import ActiveLinkButton from 'flamarkt/core/common/components/ActiveLinkButton';
-import BackofficeNav from 'flamarkt/core/backoffice/components/BackofficeNav';
+import ActiveLinkButton from 'flamarkt/backoffice/common/components/ActiveLinkButton';
+import BackofficeNav from 'flamarkt/backoffice/backoffice/components/BackofficeNav';
 import ProductShowPage from 'flamarkt/core/backoffice/pages/ProductShowPage';
-import ItemList from 'flarum/common/utils/ItemList';
 import Select from 'flarum/common/components/Select';
 import Unit from '../common/models/Unit';
 import UnitIndexPage from './pages/UnitIndexPage';
@@ -27,7 +26,7 @@ app.initializers.add('flamarkt-units', () => {
         component: UnitShowPage,
     };
 
-    extend(BackofficeNav.prototype, 'items', function (items: ItemList) {
+    extend(BackofficeNav.prototype, 'items', function (items) {
         items.add('units', ActiveLinkButton.component({
             href: app.route('units.index'),
             icon: 'fas fa-balance-scale-left',
@@ -37,14 +36,14 @@ app.initializers.add('flamarkt-units', () => {
         }, 'Units'));
     });
 
-    extend(ProductShowPage.prototype, 'show', function (this: ProductShowPage) {
-        this.unit = this.product.attribute('unit');
-        this.amountMin = this.product.attribute('amountMinEdit');
-        this.amountMax = this.product.attribute('amountMaxEdit');
-        this.amountStep = this.product.attribute('amountStepEdit');
+    extend(ProductShowPage.prototype, 'show', function () {
+        this.unit = this.product!.attribute('unit');
+        this.amountMin = this.product!.attribute('amountMinEdit');
+        this.amountMax = this.product!.attribute('amountMaxEdit');
+        this.amountStep = this.product!.attribute('amountStepEdit');
     });
 
-    extend(ProductShowPage.prototype, 'fields', function (this: ProductShowPage, fields: ItemList) {
+    extend(ProductShowPage.prototype, 'fields', function (fields) {
         const options = { //TODO: build from list of units
             default: 'Default',
             g: 'Grams',
