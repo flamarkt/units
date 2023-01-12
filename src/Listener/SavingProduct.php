@@ -9,7 +9,7 @@ class SavingProduct
 {
     public function handle(Saving $event)
     {
-        $attributes = Arr::get($event->data, 'data.attributes') ?? [];
+        $attributes = (array)Arr::get($event->data, 'attributes');
 
         if (Arr::exists($attributes, 'unit')) {
             $event->actor->assertCan('backoffice');
