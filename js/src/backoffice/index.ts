@@ -1,3 +1,4 @@
+import app from 'flamarkt/backoffice/backoffice/app';
 import {extend} from 'flarum/common/extend';
 import ActiveLinkButton from 'flamarkt/backoffice/common/components/ActiveLinkButton';
 import BackofficeNav from 'flamarkt/backoffice/backoffice/components/BackofficeNav';
@@ -8,6 +9,7 @@ import UnitIndexPage from './pages/UnitIndexPage';
 import UnitShowPage from './pages/UnitShowPage';
 import {backoffice} from './compat';
 import {common} from '../common/compat';
+import extendQuantityInput from '../common/extendQuantityInput';
 
 export {
     backoffice,
@@ -25,6 +27,8 @@ app.initializers.add('flamarkt-units', () => {
         path: '/units/:id',
         component: UnitShowPage,
     };
+
+    extendQuantityInput();
 
     extend(BackofficeNav.prototype, 'items', function (items) {
         items.add('units', ActiveLinkButton.component({

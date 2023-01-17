@@ -1,3 +1,4 @@
+import app from 'flamarkt/backoffice/backoffice/app';
 import {Vnode} from 'mithril';
 import Page from 'flarum/common/components/Page';
 import LinkButton from 'flarum/common/components/LinkButton';

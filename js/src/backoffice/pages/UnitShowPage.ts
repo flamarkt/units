@@ -1,3 +1,4 @@
+import app from 'flamarkt/backoffice/backoffice/app';
 import {Children} from 'mithril';
 import AbstractShowPage from 'flamarkt/backoffice/common/pages/AbstractShowPage';
 import SubmitButton from 'flamarkt/backoffice/backoffice/components/SubmitButton';
